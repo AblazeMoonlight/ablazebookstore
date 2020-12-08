@@ -3,30 +3,35 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.ablazebookstore.controllers;
+package edu.ablazebookstore.services;
 
 import edu.ablazebookstore.models.Book;
 import java.sql.Connection;
 import edu.ablazemoonlight.test.MyConnection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /**
  *
  * @author JARR
  */
 public class BookCrud {
+
     Connection cnx;
 
     public BookCrud() {
-                cnx = MyConnection.getInstance().getCnx();
+        cnx = MyConnection.getInstance().getCnx();
 
     }
-     public void addBook() {
+
+    public void addBook() {
         try {
             String requete = "INSERT INTO Book(title,author) VALUES"
                     + " ('the shining','stephen king')";
@@ -37,18 +42,23 @@ public class BookCrud {
             System.out.println(ex.getMessage());
         }
     }
-       public void addBook(Book b) {
-        try {
-//            String requete = "INSERT INTO personne(nom,prenom) "
-//                    + "VALUES ('"+p.getNom()+"','"+p.getPrenom()+"')";
 
-            String requete = "INSERT INTO Book(title,author) "
-                    + "VALUES (?,?)";
+    public void addBook(Book b) {
+        try {
+
+            String requete = "INSERT INTO Book(title,author,price,publisher,isbn,releaseDate,cover) "
+                    + "VALUES (?,?,?,?,?,?,?)";
 
             PreparedStatement pst = cnx
                     .prepareStatement(requete);
             pst.setString(1, b.getTitle());
             pst.setString(2, b.getAuthor());
+            pst.setFloat(3, b.getPrice());
+            pst.setString(4, b.getPublisher());
+            pst.setString(5, b.getIsbn());
+            pst.setDate(6, b.getReleasedate());
+            pst.setString(7, b.getCover());
+
             pst.executeUpdate();
             System.out.println("Book added!");
         } catch (SQLException ex) {
@@ -73,7 +83,7 @@ public class BookCrud {
         }
         return etat;
     }
-    
+
     public List<Book> listBooks() {
         List<Book> myList = new ArrayList<Book>();
         try {
@@ -85,8 +95,15 @@ public class BookCrud {
                 Book p = new Book();
                 p.setId(rs.getInt(1));
                 p.setTitle(rs.getString("title"));
+                p.setIsbn(rs.getString("author"));
+                p.setPublisher(rs.getString("publisher"));
+                p.setPrice(rs.getFloat("price"));
+
+                p.setReleasedate(rs.getDate("releaseDate"));
                 p.setAuthor(rs.getString("author"));
-              
+                p.setCover(rs.getString("cover"));
+//                ImageView bphoto = new ImageView(new Image(p.getCover()));
+//                p.setPhoto(bphoto);
                 myList.add(p);
             }
         } catch (SQLException ex) {
@@ -94,14 +111,19 @@ public class BookCrud {
         }
         return myList;
     }
-    
-     public void updateBook(Book p, int id) {
+
+    public void updateBook(Book p, int id) {
         try {
-            String requete = "Update  personne SET title=?,author=? WHERE id=?";
+            String requete = "Update    Book  SET title=?,author=?,isbn=?,publisher=?,releasedate=?,cover=? WHERE idbook=?";
             PreparedStatement pst = cnx.prepareStatement(requete);
             pst.setString(1, p.getTitle());
             pst.setString(2, p.getAuthor());
-            pst.setInt(3, id);
+            pst.setString(3, p.getIsbn());
+            pst.setString(4, p.getPublisher());
+            pst.setDate(5, p.getReleasedate());
+            pst.setString(6, p.getCover());
+            
+            pst.setInt(7, id);
 
             pst.executeUpdate();
             System.out.println("book updated");

@@ -5,7 +5,10 @@
  */
 package edu.ablazemoonlight.test;
 
-import edu.ablazebookstore.controllers.BookController;
+import edu.ablazebookstore.models.Book;
+import edu.ablazebookstore.services.BookCrud;
+import java.sql.Date;
+import java.time.LocalDate;
 
 /**
  *
@@ -13,9 +16,10 @@ import edu.ablazebookstore.controllers.BookController;
  */
 public class test { public static void main(String[] args) {
         MyConnection mc = MyConnection.getInstance();
-            BookController bc = new BookController();
-           //c.deleteBook(1);   //
-       
+            BookCrud bc = new BookCrud();
+            bc.deleteBook(10);   //
+            Book b = new Book(55, "obama","life", "565fsq", "156f", Date.valueOf("2020-12-02"), "dzda");
+            bc.updateBook(b, 12);
             System.out.println(bc.listBooks());
 }
 }
