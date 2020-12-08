@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.ablazemoonlight.test;
+package edu.ablazebookstore.test;
 
 import edu.ablazebookstore.models.Book;
 import edu.ablazebookstore.services.BookCrud;
