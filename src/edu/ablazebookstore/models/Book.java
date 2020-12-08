@@ -5,13 +5,43 @@
  */
 package edu.ablazebookstore.models;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 /**
  *
  * @author JARR
  */
 public class Book {
-    private int id,nbpages,price;
-    private String title,author,isbn;
+    private ImageView photo;
+
+    public ImageView getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(ImageView photo) {
+        this.photo = photo;
+    }
+    private int id;
+    private float price;
+    private String title, author, isbn, publisher, cover;
+   
+    public String getCover() {
+        return cover;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
+    }
+
+  
+   
+
+ 
+
+    private Date releasedate;
 
     public int getId() {
         return id;
@@ -19,14 +49,6 @@ public class Book {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getNbpages() {
-        return nbpages;
-    }
-
-    public void setNbpages(int nbpages) {
-        this.nbpages = nbpages;
     }
 
     public String getTitle() {
@@ -55,27 +77,49 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book{" + "id=" + id + ", nbpages=" + nbpages + ", title=" + title + ", author=" + author + ", isbn=" + isbn + '}';
+        return "Book{" + "id=" + id + ", price=" + price + ", title=" + title + ", author=" + author + ", isbn=" + isbn + ", publisher=" + publisher + ", releasedate=" + releasedate + '}';
     }
 
-    public int getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(float price) {
         this.price = price;
+    }
+
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+
+    public Date getReleasedate() {
+        return releasedate;
+    }
+
+    public void setReleasedate(Date releasedate) {
+        this.releasedate = releasedate;
     }
 
     public Book() {
     }
 
-    public Book(int nbpages, String title, String author, String isbn) {
-        this.nbpages = nbpages;
+    public Book(float price, String title, String author, String isbn, String publisher, Date releasedate, String cover) {
+        this.price = price;
         this.title = title;
         this.author = author;
         this.isbn = isbn;
+        this.publisher = publisher;
+        this.releasedate = releasedate;
+        this.cover = cover;
     }
-    
-    
-    
+
+    public Book(String title, String author) {
+        this.title = title;
+        this.author = author;
+
+    }
 }
