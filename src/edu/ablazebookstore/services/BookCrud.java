@@ -8,6 +8,7 @@ package edu.ablazebookstore.services;
 import edu.ablazebookstore.models.Book;
 import java.sql.Connection;
 import edu.ablazebookstore.test.MyConnection;
+import java.io.FileInputStream;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,7 +26,7 @@ import javafx.scene.image.ImageView;
 public class BookCrud {
 
     Connection cnx;
-
+    private FileInputStream fis;
     public BookCrud() {
         cnx = MyConnection.getInstance().getCnx();
 
@@ -46,8 +47,8 @@ public class BookCrud {
     public void addBook(Book b) {
         try {
 
-            String requete = "INSERT INTO Book(title,author,price,publisher,isbn,releaseDate,cover) "
-                    + "VALUES (?,?,?,?,?,?,?)";
+            String requete = "INSERT INTO Book(title,author,price,publisher,isbn,releaseDate,cover,image) "
+                    + "VALUES (?,?,?,?,?,?,?,?)";
 
             PreparedStatement pst = cnx
                     .prepareStatement(requete);
@@ -59,6 +60,8 @@ public class BookCrud {
             pst.setDate(6, b.getReleasedate());
             pst.setString(7, b.getCover());
 
+                        pst.setString(8, b.getCover());
+
             pst.executeUpdate();
             System.out.println("Book added!");
         } catch (SQLException ex) {
@@ -67,12 +70,12 @@ public class BookCrud {
 
     }
 
-    public boolean deleteBook(int id) {
+    public boolean deleteBook(Book b) {
         boolean etat = false;
         try {
             String requete = "DELETE FROM Book WHERE idBook=?";
             PreparedStatement pst = cnx.prepareStatement(requete);
-            pst.setInt(1, id);
+            pst.setInt(1, b.getId());
             pst.executeUpdate();
             System.out.println("Book deleted");
             etat = true;
@@ -98,7 +101,9 @@ public class BookCrud {
                 p.setIsbn(rs.getString("author"));
                 p.setPublisher(rs.getString("publisher"));
                 p.setPrice(rs.getFloat("price"));
-
+                System.out.println("doing image");
+                p.setPhoto(new ImageView(new Image((rs.getString("cover")))));
+                System.out.println("image done");
                 p.setReleasedate(rs.getDate("releaseDate"));
                 p.setAuthor(rs.getString("author"));
                 p.setCover(rs.getString("cover"));
@@ -112,7 +117,7 @@ public class BookCrud {
         return myList;
     }
 
-    public void updateBook(Book p, int id) {
+    public boolean updateBook(Book p) {
         try {
             String requete = "Update    Book  SET title=?,author=?,isbn=?,publisher=?,releasedate=?,cover=? WHERE idbook=?";
             PreparedStatement pst = cnx.prepareStatement(requete);
@@ -123,7 +128,7 @@ public class BookCrud {
             pst.setDate(5, p.getReleasedate());
             pst.setString(6, p.getCover());
             
-            pst.setInt(7, id);
+            pst.setInt(7, p.getId());
 
             pst.executeUpdate();
             System.out.println("book updated");
@@ -131,6 +136,7 @@ public class BookCrud {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+        return true;
 
     }
 }

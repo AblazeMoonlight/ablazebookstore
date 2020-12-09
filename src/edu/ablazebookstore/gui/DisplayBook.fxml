@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="690.0" prefWidth="1019.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ablazebookstore.gui.DisplayBookController">
-   <children>
-      <TableView fx:id="tableview" layoutX="256.0" layoutY="64.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+<BorderPane prefHeight="690.0" prefWidth="1019.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ablazebookstore.gui.DisplayBookController">
+   <center>
+      <TableView fx:id="tableview" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="850.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="txid" prefWidth="75.0" text="ID" />
           <TableColumn fx:id="txtitle" prefWidth="75.0" text="TITLE" />
@@ -15,11 +19,26 @@
             <TableColumn fx:id="txprice" prefWidth="75.0" text="PRICE" />
             <TableColumn fx:id="txpublisher" prefWidth="75.0" text="PUBLISHER" />
             <TableColumn fx:id="txreleasedate" prefWidth="75.0" text="RELEASE DATE" />
-            <TableColumn fx:id="txcover" prefWidth="75.0" text="Cover" />
+            <TableColumn fx:id="txcover" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" text="Cover" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
+         <stylesheets>
+            <URL value="@tableview.css" />
+            <URL value="@tableview.css" />
+         </stylesheets>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+         <contextMenu>
+            <ContextMenu opacity="0.72" style="-fx-background-color: #006699; -fx-text-fill: white;" styleClass="menu-item .label">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#bookDeleteOption" text="Delete" />
+                  <MenuItem fx:id="bookModifyOption" mnemonicParsing="false" onAction="#bookModifyOption" text="Modify" />
+              </items>
+            </ContextMenu>
+         </contextMenu>
       </TableView>
-   </children>
-</AnchorPane>
+   </center>
+</BorderPane>

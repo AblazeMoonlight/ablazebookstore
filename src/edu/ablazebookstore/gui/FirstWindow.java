@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package edu.ablazebookstore.gui;
-
+    
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;

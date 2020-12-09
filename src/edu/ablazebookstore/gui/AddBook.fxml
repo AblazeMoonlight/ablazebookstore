@@ -44,8 +44,8 @@
             </JFXDatePicker>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <JFXButton fx:id="btnadd" onAction="#addbook" prefHeight="100.0" prefWidth="293.0" style="-fx-background-color: #536DFE;" text="ADD BOOK" />
-                  <JFXButton layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="313.0" style="-fx-background-color: 69F0AE;" text="Cancel" />
+                  <JFXButton fx:id="btnadd" onAction="#addbook" prefHeight="100.0" prefWidth="293.0" style="-fx-background-color: #536DFE;" text="Save" />
+                  <JFXButton layoutX="10.0" layoutY="10.0" onAction="#loadBook" prefHeight="100.0" prefWidth="313.0" style="-fx-background-color: 69F0AE;" text="Load via ISBN" />
                </children></HBox>
          </children></VBox>
    </children>

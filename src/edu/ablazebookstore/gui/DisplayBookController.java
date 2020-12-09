@@ -7,18 +7,31 @@ package edu.ablazebookstore.gui;
 
 import edu.ablazebookstore.models.Book;
 import edu.ablazebookstore.services.BookCrud;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -46,24 +59,23 @@ public class DisplayBookController implements Initializable {
     @FXML
     private TableColumn<Book, String> txcover;
     @FXML
-    private ImageView aze;
-    
+    private MenuItem bookModifyOption;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        initCol();  
+        initCol();
         BookCrud bc = new BookCrud();
-      
-        tableview.getItems().setAll(bc.listBooks());
-    
 
-    }    
- List<Book> myList = new ArrayList<Book>();
-     
+        tableview.getItems().setAll(bc.listBooks());
+
+    }
+    List<Book> myList = new ArrayList<Book>();
+
     private void initCol() {
-     
+
         txid.setCellValueFactory(new PropertyValueFactory<>("id"));
         txtitle.setCellValueFactory(new PropertyValueFactory<>("title"));
         txauthor.setCellValueFactory(new PropertyValueFactory<>("author"));
@@ -71,9 +83,88 @@ public class DisplayBookController implements Initializable {
         txisbn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
         txprice.setCellValueFactory(new PropertyValueFactory<>("price"));
         txreleasedate.setCellValueFactory(new PropertyValueFactory<>("releasedate"));
-        txcover.setPrefWidth(80);
-        txcover.setCellValueFactory(new PropertyValueFactory<>("cover"));
+        System.out.println("****");
+        txcover.setCellValueFactory(new PropertyValueFactory<>("photo"));
+        System.out.println("//////");
 
     }
-    
+
+    @FXML
+    private void bookDeleteOption(ActionEvent event) {
+        Book selectedForDeletion = tableview.getSelectionModel().getSelectedItem();
+        if (selectedForDeletion == null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("WARNING");
+            alert.setHeaderText(null);
+            alert.setContentText("No Book Is Selected!! ");
+            alert.showAndWait();
+            return;
+        }
+    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Deleting Book");
+            alert.setHeaderText(null);
+            alert.setContentText("Are you sure you want to delete the book "+selectedForDeletion+" ?");
+            Optional<ButtonType> answer = alert.showAndWait();
+            if(answer.get().equals(ButtonType.OK))
+            {
+                        BookCrud bc = new BookCrud();
+                        bc.deleteBook(selectedForDeletion);
+                
+            }
+            else{
+                 Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+            alert2.setTitle("WARNING");
+            alert2.setHeaderText(null);
+            alert2.setContentText("Book deletion cancelled! ");
+            alert2.showAndWait();
+            }
+    }
+
+    @FXML
+    private void bookModifyOption(ActionEvent event) {
+    Book selectedForModification = tableview.getSelectionModel().getSelectedItem();
+        if (selectedForModification == null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("WARNING");
+            alert.setHeaderText(null);
+            alert.setContentText("No Book Is Selected!! ");
+            alert.showAndWait();
+            return;
+        }
+    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Modifying Book");
+            alert.setHeaderText(null);
+            alert.setContentText("Are you sure you want to Modify the book "+selectedForModification+" ?");
+            Optional<ButtonType> answer = alert.showAndWait();
+            if(answer.get().equals(ButtonType.OK))
+            {
+        try {
+            BookCrud bc = new BookCrud();
+//            bc.updateBook(selectedForModification,selectedForModification.getId());
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("addbook.fxml"));
+            Stage stage = new Stage(StageStyle.DECORATED);
+            stage.setTitle("Edit Book");
+              Parent root2 = loader.load();
+              BookController controller = (BookController)loader.getController();
+              controller.inflateUi(selectedForModification);
+              stage.setScene(new Scene(root2));
+              stage.show();
+              
+//            BookController pc2 = loader.getController();
+//            
+//            tableview.getScene().setRoot(root2);
+        } catch (IOException ex) {
+            Logger.getLogger(DisplayBookController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                
+            }
+            else{
+                 Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+            alert2.setTitle("WARNING");
+            alert2.setHeaderText(null);
+            alert2.setContentText("Book deletion cancelled! ");
+            alert2.showAndWait();
+            }
+    }
+
 }
