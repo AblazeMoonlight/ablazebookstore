@@ -1,0 +1,97 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package edu.ablazebookstore.services;
+
+import edu.ablazebookstore.models.Book;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+/**
+ *
+ * @author JARR
+ */
+public class BookApiCall {
+    
+    private static HttpURLConnection connection;
+    
+    public static Book gbconnect(String isbn)
+    {
+    BufferedReader reader;
+String line;
+StringBuffer responseContent = new StringBuffer();
+try{
+    URL url = new URL("https://www.googleapis.com/books/v1/volumes?q=isbn:"+isbn);
+    connection =(HttpURLConnection) url.openConnection();
+    connection.setReadTimeout(5000);
+    connection.setRequestMethod("GET");
+    connection.setConnectTimeout(5000);
+    int status = connection.getResponseCode();
+    if (status >299)
+    {
+        reader = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
+        while((line= reader.readLine()) !=null)
+        {
+            responseContent.append(line);
+        }
+        reader.close();
+    }
+    else
+    {
+       reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+        while((line= reader.readLine()) !=null)
+        {
+            responseContent.append(line);
+        }
+        reader.close();
+    }
+            return parse(responseContent.toString());
+            
+ 
+}catch(MalformedURLException e){
+    e.printStackTrace();
+    
+}catch(IOException e)
+
+{
+ e.printStackTrace();
+}
+    finally
+    {
+        connection.disconnect();
+    }
+        return null;
+}
+    public static Book parse(String responseBody)
+            
+    {Book book  = new Book();
+       
+System.out.println("Response as String : " + responseBody);
+    JSONObject responseObj = new JSONObject(responseBody);
+    JSONArray arr = responseObj.getJSONArray("items");
+    book.setTitle(arr.getJSONObject(0).getJSONObject("volumeInfo").getString("title"));
+    book.setAuthor(responseObj.getJSONArray("items").getJSONObject(0).getJSONObject("volumeInfo").getJSONArray("authors").getString(0));
+    
+    book.setCategory(responseObj.getJSONArray("items").getJSONObject(0).getJSONObject("volumeInfo").getJSONArray("categories").getString(0));
+    book.setDescription(responseObj.getJSONArray("items").getJSONObject(0).getJSONObject("volumeInfo").getString("description"));
+    book.setPublisher(responseObj.getJSONArray("items").getJSONObject(0).getJSONObject("volumeInfo").getString("publisher")); 
+      SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+       String xx= arr.getJSONObject(0).getJSONObject("volumeInfo").getString("publishedDate");
+        System.out.println(xx);
+    book.setReleasedate(Date.valueOf(arr.getJSONObject(0).getJSONObject("volumeInfo").getString("publishedDate")));
+        System.out.println(Date.valueOf(arr.getJSONObject(0).getJSONObject("volumeInfo").getString("publishedDate")));
+    book.setCover(responseObj.getJSONArray("items").getJSONObject(0).getJSONObject("volumeInfo").getJSONObject("imageLinks").getString("thumbnail"));
+    
+        return book;
+    }
+}

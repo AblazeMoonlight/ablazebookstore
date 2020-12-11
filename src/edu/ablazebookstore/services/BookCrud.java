@@ -47,8 +47,8 @@ public class BookCrud {
     public void addBook(Book b) {
         try {
 
-            String requete = "INSERT INTO Book(title,author,price,publisher,isbn,releaseDate,cover,image) "
-                    + "VALUES (?,?,?,?,?,?,?,?)";
+            String requete = "INSERT INTO Book(title,author,price,publisher,isbn,releaseDate,cover,image,description,categorie) "
+                    + "VALUES (?,?,?,?,?,?,?,?,?,?)";
 
             PreparedStatement pst = cnx
                     .prepareStatement(requete);
@@ -61,6 +61,8 @@ public class BookCrud {
             pst.setString(7, b.getCover());
 
                         pst.setString(8, b.getCover());
+                           pst.setString(9, b.getDescription());
+                        pst.setString(10, b.getCategory());
 
             pst.executeUpdate();
             System.out.println("Book added!");
@@ -107,6 +109,8 @@ public class BookCrud {
                 p.setReleasedate(rs.getDate("releaseDate"));
                 p.setAuthor(rs.getString("author"));
                 p.setCover(rs.getString("cover"));
+                p.setDescription(rs.getString("description"));
+                p.setCategory(rs.getString("categorie"));
 //                ImageView bphoto = new ImageView(new Image(p.getCover()));
 //                p.setPhoto(bphoto);
                 myList.add(p);
@@ -135,6 +139,9 @@ public class BookCrud {
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+        }catch(NullPointerException e)
+        {
+            System.out.println(e.getMessage());
         }
         return true;
 

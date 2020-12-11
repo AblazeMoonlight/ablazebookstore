@@ -5,6 +5,7 @@
  */
 package edu.ablazebookstore.gui;
 
+import static edu.ablazebookstore.gui.BookController.editmode;
 import edu.ablazebookstore.models.Book;
 import edu.ablazebookstore.services.BookCrud;
 import java.io.IOException;
@@ -60,6 +61,10 @@ public class DisplayBookController implements Initializable {
     private TableColumn<Book, String> txcover;
     @FXML
     private MenuItem bookModifyOption;
+    @FXML
+    private TableColumn<Book, String> txcatg;
+    @FXML
+    private TableColumn<Book, String> txdesc;
 
     /**
      * Initializes the controller class.
@@ -82,6 +87,8 @@ public class DisplayBookController implements Initializable {
         txpublisher.setCellValueFactory(new PropertyValueFactory<>("publisher"));
         txisbn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
         txprice.setCellValueFactory(new PropertyValueFactory<>("price"));
+        txcatg.setCellValueFactory(new PropertyValueFactory<>("category"));
+        txdesc.setCellValueFactory(new PropertyValueFactory<>("description"));
         txreleasedate.setCellValueFactory(new PropertyValueFactory<>("releasedate"));
         System.out.println("****");
         txcover.setCellValueFactory(new PropertyValueFactory<>("photo"));
@@ -100,29 +107,27 @@ public class DisplayBookController implements Initializable {
             alert.showAndWait();
             return;
         }
-    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Deleting Book");
-            alert.setHeaderText(null);
-            alert.setContentText("Are you sure you want to delete the book "+selectedForDeletion+" ?");
-            Optional<ButtonType> answer = alert.showAndWait();
-            if(answer.get().equals(ButtonType.OK))
-            {
-                        BookCrud bc = new BookCrud();
-                        bc.deleteBook(selectedForDeletion);
-                
-            }
-            else{
-                 Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Deleting Book");
+        alert.setHeaderText(null);
+        alert.setContentText("Are you sure you want to delete the book " + selectedForDeletion + " ?");
+        Optional<ButtonType> answer = alert.showAndWait();
+        if (answer.get().equals(ButtonType.OK)) {
+            BookCrud bc = new BookCrud();
+            bc.deleteBook(selectedForDeletion);
+
+        } else {
+            Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
             alert2.setTitle("WARNING");
             alert2.setHeaderText(null);
             alert2.setContentText("Book deletion cancelled! ");
             alert2.showAndWait();
-            }
+        }
     }
 
     @FXML
     private void bookModifyOption(ActionEvent event) {
-    Book selectedForModification = tableview.getSelectionModel().getSelectedItem();
+        Book selectedForModification = tableview.getSelectionModel().getSelectedItem();
         if (selectedForModification == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("WARNING");
@@ -131,40 +136,36 @@ public class DisplayBookController implements Initializable {
             alert.showAndWait();
             return;
         }
-    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Modifying Book");
-            alert.setHeaderText(null);
-            alert.setContentText("Are you sure you want to Modify the book "+selectedForModification+" ?");
-            Optional<ButtonType> answer = alert.showAndWait();
-            if(answer.get().equals(ButtonType.OK))
-            {
-        try {
-            BookCrud bc = new BookCrud();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Modifying Book");
+        alert.setHeaderText(null);
+        alert.setContentText("Are you sure you want to Modify the book " + selectedForModification + " ?");
+        Optional<ButtonType> answer = alert.showAndWait();
+        if (answer.get().equals(ButtonType.OK)) {
+            editmode = true;
+
+            try {
+                BookCrud bc = new BookCrud();
 //            bc.updateBook(selectedForModification,selectedForModification.getId());
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("addbook.fxml"));
-            Stage stage = new Stage(StageStyle.DECORATED);
-            stage.setTitle("Edit Book");
-              Parent root2 = loader.load();
-              BookController controller = (BookController)loader.getController();
-              controller.inflateUi(selectedForModification);
-              stage.setScene(new Scene(root2));
-              stage.show();
-              
-//            BookController pc2 = loader.getController();
-//            
-//            tableview.getScene().setRoot(root2);
-        } catch (IOException ex) {
-            Logger.getLogger(DisplayBookController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-                
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("addbook.fxml"));
+                Stage stage = new Stage(StageStyle.DECORATED);
+                stage.setTitle("Edit Book");
+                Parent root2 = loader.load();
+                BookController controller = (BookController) loader.getController();
+                controller.inflateUi(selectedForModification);
+                stage.setScene(new Scene(root2));
+                stage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(DisplayBookController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            else{
-                 Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+
+        } else {
+            Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
             alert2.setTitle("WARNING");
             alert2.setHeaderText(null);
             alert2.setContentText("Book deletion cancelled! ");
             alert2.showAndWait();
-            }
+        }
     }
 
 }

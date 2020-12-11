@@ -15,19 +15,48 @@ import javafx.scene.image.ImageView;
  * @author JARR
  */
 public class Book {
+
     private ImageView photo;
 
-    public ImageView getPhoto() {
+   
+    private int id;
+    private float price;
+    private String title, author, isbn, publisher, cover,description,category;
+
+    public Book(float price, String title, String author, String isbn, String publisher, String cover, String description, String category, Date releasedate) {
+        this.price = price;
+        this.title = title;
+        this.author = author;
+        this.isbn = isbn;
+        this.publisher = publisher;
+        this.cover = cover;
+        this.description = description;
+        this.category = category;
+        this.releasedate = releasedate;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+ public ImageView getPhoto() {
         return photo;
     }
 
     public void setPhoto(ImageView photo) {
         this.photo = photo;
     }
-    private int id;
-    private float price;
-    private String title, author, isbn, publisher, cover;
-   
     public String getCover() {
         return cover;
     }
@@ -35,11 +64,6 @@ public class Book {
     public void setCover(String cover) {
         this.cover = cover;
     }
-
-  
-   
-
- 
 
     private Date releasedate;
 

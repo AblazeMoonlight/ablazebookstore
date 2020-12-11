@@ -14,7 +14,7 @@ import javafx.fxml.Initializable;
  *
  * @author JARR
  */
-public class DeleteBookController implements Initializable {
+public class ManageBooksController implements Initializable {
 
     /**
      * Initializes the controller class.

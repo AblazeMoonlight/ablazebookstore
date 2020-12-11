@@ -7,21 +7,28 @@ package edu.ablazebookstore.gui;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import edu.ablazebookstore.services.BookCrud;
 import edu.ablazebookstore.models.Book;
+import edu.ablazebookstore.services.BookApiCall;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.JDBCType;
 import java.time.LocalDate;
 import java.sql.Date;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -47,8 +54,16 @@ public class BookController implements Initializable {
     private JFXDatePicker txreleasedate;
     @FXML
     private JFXTextField txcover;
-    private boolean editmode=false;
+
+ 
+    public static boolean editmode=false;
     private int  id;
+    @FXML
+    private JFXTextArea txdescription;
+    @FXML
+    private JFXTextField txcategory;
+    @FXML
+    private JFXButton btnload;
   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -77,7 +92,7 @@ public class BookController implements Initializable {
 
     @FXML
     private void addbook(ActionEvent event) {
-        String title, author, publisher, isbn, cover;
+        String title, author, publisher, isbn, cover,description,category;
         float price;
         
         Date releasedate;
@@ -87,11 +102,12 @@ public class BookController implements Initializable {
             isbn = txisbn.getText();
             publisher = txpublisher.getText();
             cover = txcover.getText();
-            
+            description = txdescription.getText();
+            category = txcategory.getText();
             price = Float.parseFloat(txprice.getText());
             releasedate = Date.valueOf(txreleasedate.getValue());
             BookCrud pc = new BookCrud();
-            Book p1 = new Book(price, title, author, isbn, publisher, releasedate, cover);
+            Book p1 = new Book(price, title, author, isbn, publisher, cover, description, category, releasedate);
             if(editmode)
             {
                editbook();
@@ -111,9 +127,11 @@ public class BookController implements Initializable {
             txisbn.setText(book.getIsbn());
             txpublisher.setText(book.getPublisher());
             txcover.setText(book.getCover());
-            txprice.setText(String.valueOf(book.getPrice()));
+            txdescription.setText(book.getDescription());
+            txcategory.setText(book.getCategory());
             txreleasedate.setValue(book.getReleasedate().toLocalDate());
-            editmode=true;
+            txprice.setText(String.valueOf(book.getPrice()));
+//            txreleasedate.setValue(book.getReleasedate().toLocalDate());
     }
     private void editbook()
     {           
@@ -131,15 +149,20 @@ public class BookController implements Initializable {
 
     @FXML
     private void loadBook(ActionEvent event) {
-        if (txisbn.getText().isEmpty())
-        {
-              Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("WARNING");
-            alert.setHeaderText(null);
-            alert.setContentText("ISBN FIELD IS EMPTY");
-            alert.showAndWait();
-            return;
-        }
+       
+            if (txisbn.getText().isEmpty())
+            {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("WARNING");
+                alert.setHeaderText(null);
+                alert.setContentText("ISBN FIELD IS EMPTY");
+                alert.showAndWait();
+                return;
+            }
+         
+            this.inflateUi(BookApiCall.gbconnect(txisbn.getText()));
+           
+       
         
        
     }

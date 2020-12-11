@@ -6,6 +6,7 @@
 package edu.ablazebookstore.test;
 
 import edu.ablazebookstore.models.Book;
+import edu.ablazebookstore.services.BookApiCall;
 import edu.ablazebookstore.services.BookCrud;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -15,11 +16,8 @@ import java.time.LocalDate;
  * @author JARR
  */
 public class test { public static void main(String[] args) {
-        MyConnection mc = MyConnection.getInstance();
-            BookCrud bc = new BookCrud();
-            bc.deleteBook(10);   //
-            Book b = new Book(55, "obama","life", "565fsq", "156f", Date.valueOf("2020-12-02"), "dzda");
-            bc.updateBook(b, 12);
-            System.out.println(bc.listBooks());
+      
+    BookApiCall.gbconnect("9780434009404");
+    
 }
 }
