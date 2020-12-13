@@ -95,17 +95,23 @@ public class DisplayBookController implements Initializable {
         System.out.println("//////");
 
     }
-
+    public static void alertWrng(String title,String content)
+    {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle(title);
+            alert.setHeaderText(null);
+            alert.setContentText(content);
+            alert.showAndWait();
+            return;
+    }
+    
+    
     @FXML
     private void bookDeleteOption(ActionEvent event) {
         Book selectedForDeletion = tableview.getSelectionModel().getSelectedItem();
         if (selectedForDeletion == null) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("WARNING");
-            alert.setHeaderText(null);
-            alert.setContentText("No Book Is Selected!! ");
-            alert.showAndWait();
-            return;
+            alertWrng("Book Deletion error","No book is selected");
+          
         }
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Deleting Book");
@@ -117,11 +123,9 @@ public class DisplayBookController implements Initializable {
             bc.deleteBook(selectedForDeletion);
 
         } else {
-            Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
-            alert2.setTitle("WARNING");
-            alert2.setHeaderText(null);
-            alert2.setContentText("Book deletion cancelled! ");
-            alert2.showAndWait();
+                        alertWrng("Notice","Book deletion cancelled!");
+
+        
         }
     }
 
@@ -129,12 +133,8 @@ public class DisplayBookController implements Initializable {
     private void bookModifyOption(ActionEvent event) {
         Book selectedForModification = tableview.getSelectionModel().getSelectedItem();
         if (selectedForModification == null) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("WARNING");
-            alert.setHeaderText(null);
-            alert.setContentText("No Book Is Selected!! ");
-            alert.showAndWait();
-            return;
+                      alertWrng("Book update error","No book is selected");
+
         }
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Modifying Book");
@@ -143,7 +143,7 @@ public class DisplayBookController implements Initializable {
         Optional<ButtonType> answer = alert.showAndWait();
         if (answer.get().equals(ButtonType.OK)) {
             editmode = true;
-
+            
             try {
                 BookCrud bc = new BookCrud();
 //            bc.updateBook(selectedForModification,selectedForModification.getId());
@@ -154,17 +154,17 @@ public class DisplayBookController implements Initializable {
                 BookController controller = (BookController) loader.getController();
                 controller.inflateUi(selectedForModification);
                 stage.setScene(new Scene(root2));
+
                 stage.show();
+
             } catch (IOException ex) {
                 Logger.getLogger(DisplayBookController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         } else {
-            Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
-            alert2.setTitle("WARNING");
-            alert2.setHeaderText(null);
-            alert2.setContentText("Book deletion cancelled! ");
-            alert2.showAndWait();
+                        alertWrng("Notice","Book update cancelled");
+
+           
         }
     }
 

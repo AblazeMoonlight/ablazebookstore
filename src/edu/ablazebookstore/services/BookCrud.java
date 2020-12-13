@@ -47,7 +47,7 @@ public class BookCrud {
     public void addBook(Book b) {
         try {
 
-            String requete = "INSERT INTO Book(title,author,price,publisher,isbn,releaseDate,cover,image,description,categorie) "
+                String requete = "INSERT INTO Book(title,author,price,publisher,isbn,releaseDate,cover,image,description,categorie) "
                     + "VALUES (?,?,?,?,?,?,?,?,?,?)";
 
             PreparedStatement pst = cnx
@@ -75,7 +75,7 @@ public class BookCrud {
     public boolean deleteBook(Book b) {
         boolean etat = false;
         try {
-            String requete = "DELETE FROM Book WHERE idBook=?";
+            String requete = "DELETE FROM Book WHERE bookid=?";
             PreparedStatement pst = cnx.prepareStatement(requete);
             pst.setInt(1, b.getId());
             pst.executeUpdate();
@@ -123,7 +123,7 @@ public class BookCrud {
 
     public boolean updateBook(Book p) {
         try {
-            String requete = "Update    Book  SET title=?,author=?,isbn=?,publisher=?,releasedate=?,cover=? WHERE idbook=?";
+            String requete = "Update    Book  SET title=?,author=?,isbn=?,publisher=?,releasedate=?,cover=? WHERE bookid=?";
             PreparedStatement pst = cnx.prepareStatement(requete);
             pst.setString(1, p.getTitle());
             pst.setString(2, p.getAuthor());
