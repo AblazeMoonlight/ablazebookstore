@@ -65,6 +65,7 @@ public class DisplayBookController implements Initializable {
     private TableColumn<Book, String> txcatg;
     @FXML
     private TableColumn<Book, String> txdesc;
+    List<Book> myList = new ArrayList<Book>();
 
     /**
      * Initializes the controller class.
@@ -77,7 +78,6 @@ public class DisplayBookController implements Initializable {
         tableview.getItems().setAll(bc.listBooks());
 
     }
-    List<Book> myList = new ArrayList<Book>();
 
     private void initCol() {
 
@@ -95,23 +95,22 @@ public class DisplayBookController implements Initializable {
         System.out.println("//////");
 
     }
-    public static void alertWrng(String title,String content)
-    {
+
+    public static void alertWrng(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle(title);
-            alert.setHeaderText(null);
-            alert.setContentText(content);
-            alert.showAndWait();
-            return;
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
+        return;
     }
-    
-    
+
     @FXML
     private void bookDeleteOption(ActionEvent event) {
         Book selectedForDeletion = tableview.getSelectionModel().getSelectedItem();
         if (selectedForDeletion == null) {
-            alertWrng("Book Deletion error","No book is selected");
-          
+            alertWrng("Book Deletion error", "No book is selected");
+
         }
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Deleting Book");
@@ -123,9 +122,8 @@ public class DisplayBookController implements Initializable {
             bc.deleteBook(selectedForDeletion);
 
         } else {
-                        alertWrng("Notice","Book deletion cancelled!");
+            alertWrng("Notice", "Book deletion cancelled!");
 
-        
         }
     }
 
@@ -133,7 +131,7 @@ public class DisplayBookController implements Initializable {
     private void bookModifyOption(ActionEvent event) {
         Book selectedForModification = tableview.getSelectionModel().getSelectedItem();
         if (selectedForModification == null) {
-                      alertWrng("Book update error","No book is selected");
+            alertWrng("Book update error", "No book is selected");
 
         }
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -143,9 +141,8 @@ public class DisplayBookController implements Initializable {
         Optional<ButtonType> answer = alert.showAndWait();
         if (answer.get().equals(ButtonType.OK)) {
             editmode = true;
-            
+
             try {
-                BookCrud bc = new BookCrud();
 //            bc.updateBook(selectedForModification,selectedForModification.getId());
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("addbook.fxml"));
                 Stage stage = new Stage(StageStyle.DECORATED);
@@ -156,15 +153,34 @@ public class DisplayBookController implements Initializable {
                 stage.setScene(new Scene(root2));
 
                 stage.show();
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("../inscription/Inscription.fxml"));
+//            Parent root2 = loader.load();
+//            BookController  pc2 = loader.getController();
+//            tableview.getScene().setRoot(root2);
 
             } catch (IOException ex) {
                 Logger.getLogger(DisplayBookController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         } else {
-                        alertWrng("Notice","Book update cancelled");
+            alertWrng("Notice", "Book update cancelled");
 
-           
+        }
+    }
+
+    @FXML
+    private void openAddBook(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("addbook.fxml"));
+            Stage stage = new Stage(StageStyle.DECORATED);
+            stage.setTitle("Add Book");
+            Parent root2 = loader.load();
+            BookController controller = (BookController) loader.getController();
+            stage.setScene(new Scene(root2));
+            stage.show();
+
+        } catch (IOException ex) {
+            Logger.getLogger(DisplayBookController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
