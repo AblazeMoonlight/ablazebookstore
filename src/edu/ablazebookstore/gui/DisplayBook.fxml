@@ -15,6 +15,8 @@
           <TableColumn fx:id="txid" prefWidth="75.0" text="ID" />
           <TableColumn fx:id="txtitle" prefWidth="75.0" text="TITLE" />
             <TableColumn fx:id="txauthor" prefWidth="75.0" text="AUTHOR" />
+            <TableColumn fx:id="txcatg" prefWidth="75.0" text="Category" />
+            <TableColumn fx:id="txdesc" prefWidth="75.0" text="Description" />
             <TableColumn fx:id="txisbn" prefWidth="75.0" text="ISBN" />
             <TableColumn fx:id="txprice" prefWidth="75.0" text="PRICE" />
             <TableColumn fx:id="txpublisher" prefWidth="75.0" text="PUBLISHER" />
