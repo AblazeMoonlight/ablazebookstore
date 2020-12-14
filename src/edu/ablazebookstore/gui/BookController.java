@@ -9,6 +9,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import static edu.ablazebookstore.gui.DisplayBookController.alertWrng;
 import edu.ablazebookstore.services.BookCrud;
 import edu.ablazebookstore.models.Book;
 import edu.ablazebookstore.services.BookApiCall;
@@ -74,6 +75,8 @@ public class BookController implements Initializable {
         if (tftitle.getText().isEmpty()
                 || txauthor.getText().isEmpty()
                 || txisbn.getText().isEmpty()
+                || txdescription.getText().isEmpty()
+                || txcategory.getText().isEmpty()
                 || txpublisher.getText().isEmpty()
                 || txcover.getText().isEmpty()
                 || txprice.getText().isEmpty()
@@ -101,18 +104,21 @@ public class BookController implements Initializable {
             isbn = txisbn.getText();
             publisher = txpublisher.getText();
             cover = txcover.getText();
+
             description = txdescription.getText();
             category = txcategory.getText();
             price = Float.parseFloat(txprice.getText());
             releasedate = Date.valueOf(txreleasedate.getValue());
             BookCrud pc = new BookCrud();
             Book p1 = new Book(price, title, author, isbn, publisher, cover, description, category, releasedate);
+
             if (editmode) {
                 editBook();
             } else {
                 pc.addBook(p1);
 
             }
+
         }
 
     }
@@ -121,18 +127,26 @@ public class BookController implements Initializable {
         id = book.getId();
         tftitle.setText(book.getTitle());
         txauthor.setText(book.getAuthor());
-        txisbn.setText(book.getIsbn());
+        if (editmode) {
+            txisbn.setText(book.getIsbn());
+
+        } else {
+            txisbn.setText(BookApiCall.isbn);
+
+        }
         txpublisher.setText(book.getPublisher());
         txcover.setText(book.getCover());
         txdescription.setText(book.getDescription());
         txcategory.setText(book.getCategory());
-//       txreleasedate.setValue(book.getReleasedate().toLocalDate());
         txprice.setText(String.valueOf(book.getPrice()));
-          txreleasedate.setValue(book.getReleasedate().toLocalDate());
+        txreleasedate.setValue(book.getReleasedate().toLocalDate());
     }
 
     private void editBook() {
-        Book book = new Book(Float.parseFloat(txprice.getText()), tftitle.getText(), txauthor.getText(), txisbn.getText(), txpublisher.getText(), Date.valueOf(txreleasedate.getValue()), txcover.getText());
+        btnadd.setText("Edit Book");
+        Book book = new Book(Float.parseFloat(txprice.getText()), tftitle.getText(),
+                txauthor.getText(), txisbn.getText(), txpublisher.getText(),
+                Date.valueOf(txreleasedate.getValue()), txcover.getText());
         book.setId(id);
         BookCrud pc = new BookCrud();
         if (pc.updateBook(book)) {
@@ -148,12 +162,8 @@ public class BookController implements Initializable {
     private void loadBook(ActionEvent event) {
 
         if (txisbn.getText().isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("WARNING");
-            alert.setHeaderText(null);
-            alert.setContentText("ISBN FIELD IS EMPTY");
-            alert.showAndWait();
-            return;
+            alertWrng("Empty Isbn Field", "Please Insert Isbn then try again");
+               
         }
 
         this.inflateUi(BookApiCall.gbconnect(txisbn.getText()));
