@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.CartController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="986.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ablazebookstore.gui.CartController">
    <center>
-      <TableView fx:id="tableOrder" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="tableOrder" prefHeight="400.0" prefWidth="967.0" stylesheets="@contextmenu.css" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="txtitle" prefWidth="347.0" text="Book" />
           <TableColumn fx:id="txuniteprice" minWidth="0.0" prefWidth="113.0" text="Unit Price" />
@@ -26,10 +23,6 @@
               </items>
             </ContextMenu>
          </contextMenu>
-         <stylesheets>
-            <URL value="@tableview.css" />
-            <URL value="@tableview.css" />
-         </stylesheets>
       </TableView>
    </center>
 </BorderPane>
