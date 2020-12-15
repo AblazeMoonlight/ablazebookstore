@@ -12,7 +12,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="599.0" prefWidth="1030.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ablazebookstore.gui.HomeController">
    <children>
-      <VBox layoutX="-1.0" prefHeight="769.0" prefWidth="304.0" style="-fx-background-color: #1976D2;">
+      <VBox layoutX="-1.0" prefHeight="769.0" prefWidth="275.0" style="-fx-background-color: #1976D2;">
          <children>
             <Pane prefHeight="149.0" prefWidth="270.0">
                <children>
@@ -44,7 +44,7 @@
                   <Font size="18.0" />
                </font>
             </JFXButton>
-            <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="70.0" prefWidth="274.0" style="-fx-background-color: #1976D2;" text="View Cart" textFill="WHITE">
+            <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="10.0" onAction="#viewCart" prefHeight="70.0" prefWidth="274.0" style="-fx-background-color: #1976D2;" text="View Cart" textFill="WHITE">
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="SHOPPING_CART" size="22" />
                </graphic>
@@ -104,12 +104,28 @@
                   <Font size="18.0" />
                </font>
             </JFXButton>
+            <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="439.0" onAction="#paymentInfo" prefHeight="70.0" prefWidth="274.0" style="-fx-background-color: #1976D2;" text="Payment Information" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="CC_STRIPE" size="22" />
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <stylesheets>
+                  <URL value="@contextmenu.css" />
+                  <URL value="@contextmenu.css" />
+               </stylesheets>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
          </children>
       </VBox>
-      <Pane fx:id="pangemb" layoutX="305.0" prefHeight="769.0" prefWidth="759.0" />
-      <Pane fx:id="panesupport" layoutX="307.0" layoutY="-2.0" prefHeight="763.0" prefWidth="759.0" />
-      <Pane fx:id="paneconsult" layoutX="303.0" layoutY="7.0" prefHeight="763.0" prefWidth="766.0" />
-      <Pane fx:id="paneclient" layoutX="299.0" layoutY="5.0" prefHeight="754.0" prefWidth="774.0" />
-      <Pane fx:id="panecart" layoutX="309.0" prefHeight="769.0" prefWidth="766.0" />
+      <Pane fx:id="pangemb" layoutX="273.0" prefHeight="769.0" prefWidth="799.0" stylesheets="@contextmenu.css" />
+      <Pane fx:id="panesupport" layoutX="275.0" layoutY="-2.0" prefHeight="763.0" prefWidth="791.0" />
+      <Pane fx:id="paneconsult" layoutX="278.0" layoutY="7.0" prefHeight="763.0" prefWidth="791.0" />
+      <Pane fx:id="paneclient" layoutX="282.0" layoutY="5.0" prefHeight="754.0" prefWidth="791.0" />
+      <Pane fx:id="panecart" layoutX="276.0" prefHeight="769.0" prefWidth="799.0" />
+      <Pane fx:id="panepaymen" layoutX="286.0" layoutY="10.0" prefHeight="769.0" prefWidth="799.0" />
    </children>
 </AnchorPane>
