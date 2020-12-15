@@ -27,16 +27,16 @@ public class FirstWindow extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            Parent root =FXMLLoader.load(getClass().getResource("displaybook.fxml"));
+            Parent root =FXMLLoader.load(getClass().getResource("home.fxml"));
             
-            Scene scene = new Scene(root, 1250, 750);
+            Scene scene = new Scene(root, 1350, 780);
             
             primaryStage.setTitle("Hello World!");
             primaryStage.setScene(scene);
-            primaryStage.setMinHeight(750);
-            primaryStage.setMinWidth(1250);
-            primaryStage.setMaxHeight(750);
-            primaryStage.setMaxWidth(1250);
+            primaryStage.setMinHeight(780);
+            primaryStage.setMinWidth(1350);
+            primaryStage.setMaxHeight(780);
+            primaryStage.setMaxWidth(1350);
             primaryStage.show();
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
