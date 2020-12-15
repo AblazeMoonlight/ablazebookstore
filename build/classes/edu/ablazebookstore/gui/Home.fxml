@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="599.0" prefWidth="1030.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ablazebookstore.gui.HomeController">
+   <children>
+      <VBox layoutX="-1.0" prefHeight="769.0" prefWidth="304.0" style="-fx-background-color: #1976D2;">
+         <children>
+            <Pane prefHeight="149.0" prefWidth="270.0">
+               <children>
+                  <FontAwesomeIconView fill="WHITE" glyphName="LEANPUB" layoutX="14.0" layoutY="21.0" size="22" wrappingWidth="41.14285755157471" />
+                  <Label layoutX="51.0" layoutY="4.0" prefHeight="35.0" prefWidth="196.0" text="AblazeMoonlight" textFill="WHITE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="107.0" layoutY="35.0" text="BookStore" textFill="WHITE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <JFXButton alignment="BASELINE_LEFT" prefHeight="70.0" prefWidth="285.0" style="-fx-background-color: #1976D2;" text="View Books" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="BOOK" size="22" wrappingWidth="20.142857551574707" />
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <stylesheets>
+                  <URL value="@contextmenu.css" />
+                  <URL value="@contextmenu.css" />
+               </stylesheets>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+            <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="70.0" prefWidth="274.0" style="-fx-background-color: #1976D2;" text="View Cart" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="SHOPPING_CART" size="22" />
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <stylesheets>
+                  <URL value="@contextmenu.css" />
+                  <URL value="@contextmenu.css" />
+               </stylesheets>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+            <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="70.0" prefWidth="274.0" style="-fx-background-color: #1976D2;" text="Customer Support" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="ENVELOPE" size="22" />
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <stylesheets>
+                  <URL value="@contextmenu.css" />
+                  <URL value="@contextmenu.css" />
+               </stylesheets>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+            <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="70.0" prefWidth="274.0" style="-fx-background-color: #1976D2;" text="Manage Account" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="USER" size="22" />
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <stylesheets>
+                  <URL value="@contextmenu.css" />
+                  <URL value="@contextmenu.css" />
+               </stylesheets>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="manageBooks" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="10.0" onAction="#manageBooks" prefHeight="70.0" prefWidth="274.0" style="-fx-background-color: #1976D2;" text="Manage Books" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="WRENCH" size="22" />
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <stylesheets>
+                  <URL value="@contextmenu.css" />
+                  <URL value="@contextmenu.css" />
+               </stylesheets>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </VBox>
+      <Pane fx:id="pangemb" layoutX="305.0" prefHeight="769.0" prefWidth="759.0" />
+      <Pane fx:id="panesupport" layoutX="307.0" layoutY="-2.0" prefHeight="763.0" prefWidth="759.0" />
+      <Pane fx:id="paneconsult" layoutX="303.0" layoutY="7.0" prefHeight="763.0" prefWidth="766.0" />
+      <Pane fx:id="paneclient" layoutX="299.0" layoutY="5.0" prefHeight="754.0" prefWidth="774.0" />
+      <Pane fx:id="panecart" layoutX="309.0" prefHeight="769.0" prefWidth="766.0" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="244.0" prefWidth="580.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="gui.PaymentController">
+   <children>
+      <TextField fx:id="TXCARDINFO" layoutX="204.0" layoutY="97.0" prefHeight="25.0" prefWidth="245.0" />
+      <TextField fx:id="exp_month" layoutX="126.0" layoutY="150.0" prefHeight="25.0" prefWidth="48.0" />
+      <TextField fx:id="cvv" layoutX="381.0" layoutY="150.0" prefHeight="25.0" prefWidth="68.0" />
+      <Text layoutX="126.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="card number" />
+      <Text layoutX="36.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="expire month" />
+      <Text layoutX="339.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="cvv" />
+      <Text layoutX="289.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CARD INFO" />
+      <Button fx:id="BUY" layoutX="496.0" layoutY="205.0" mnemonicParsing="false" text="ADD" />
+      <TextField fx:id="exp_year" layoutX="266.0" layoutY="150.0" prefHeight="25.0" prefWidth="61.0" />
+      <Text layoutX="194.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="expire year" />
+   </children>
+</AnchorPane>
