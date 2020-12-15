@@ -100,11 +100,14 @@ public class BookCrud {
                 Book p = new Book();
                 p.setId(rs.getInt(1));
                 p.setTitle(rs.getString("title"));
-                p.setIsbn(rs.getString("author"));
+                p.setIsbn(rs.getString("isbn"));
                 p.setPublisher(rs.getString("publisher"));
                 p.setPrice(rs.getFloat("price"));
                 System.out.println("doing image");
-                p.setPhoto(new ImageView(new Image((rs.getString("cover")))));
+               ImageView iv= new ImageView(new Image((rs.getString("cover"))));
+               iv.setFitWidth(150);
+               iv.setFitHeight(150);
+                p.setPhoto(iv);
                 System.out.println("image done");
                 p.setReleasedate(rs.getDate("releaseDate"));
                 p.setAuthor(rs.getString("author"));
@@ -123,7 +126,7 @@ public class BookCrud {
 
     public boolean updateBook(Book p) {
         try {
-            String requete = "Update    Book  SET title=?,author=?,isbn=?,publisher=?,releasedate=?,cover=? WHERE idbook=?";
+            String requete = "Update    Book  SET title=?,author=?,isbn=?,publisher=?,releasedate=?,cover=? WHERE bookid=?";
             PreparedStatement pst = cnx.prepareStatement(requete);
             pst.setString(1, p.getTitle());
             pst.setString(2, p.getAuthor());

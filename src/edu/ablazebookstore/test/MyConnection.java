@@ -17,9 +17,9 @@ import java.util.logging.Logger;
  */
 public class MyConnection {
     
-    public String url="jdbc:mysql://sql7.freesqldatabase.com:3306/sql7380413";
-    public String login="sql7380413";
-    public String pwd="6n4ejtqsQk";
+    public String url="jdbc:mysql://sql7.freesqldatabase.com:3306/sql7381684";
+    public String login="sql7381684";
+    public String pwd="TUvsrQBiUT";
     Connection cnx;
     public static MyConnection instance;
 
