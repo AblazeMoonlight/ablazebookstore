@@ -27,7 +27,7 @@ public class FirstWindow extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            Parent root =FXMLLoader.load(getClass().getResource("Home.fxml"));
+            Parent root =FXMLLoader.load(getClass().getResource("home.fxml"));
             
             Scene scene = new Scene(root, 1350, 780);
             
