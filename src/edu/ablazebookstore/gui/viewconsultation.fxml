@@ -1,22 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 
-    
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ablazebookstore.gui.ViewconsultationController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ablazebookstore.gui.ViewconsultationController">
    <children>
-      <TableView fx:id="allBooksTable" layoutY="60.0" prefHeight="309.0" prefWidth="648.0">
+      <TableView fx:id="allBooksTable" editable="true" layoutY="64.0" prefHeight="594.0" prefWidth="879.0" stylesheets="@contextmenu.css">
         <columns>
           <TableColumn fx:id="idBk" prefWidth="92.0" text="BOOK ID" />
           <TableColumn fx:id="title" prefWidth="121.0" text="TITLE" />
             <TableColumn fx:id="auth" prefWidth="148.0" text="AUTHOR" />
-            <TableColumn fx:id="rlSdate" prefWidth="136.0" text="RELEASE DATE" />
-            <TableColumn fx:id="category" prefWidth="150.0" text="CATEGORY" />
+            <TableColumn fx:id="rlSdate" prefWidth="103.0" text="RELEASE DATE" />
+            <TableColumn fx:id="category" prefWidth="183.0" text="CATEGORY" />
         </columns>
+         <contextMenu>
+            <ContextMenu fx:id="cntxMenu">
+              <items>
+                <MenuItem fx:id="viewDetmnItem" mnemonicParsing="false" onAction="#ViewDetails" text="View Details" />
+              </items>
+            </ContextMenu>
+         </contextMenu>
       </TableView>
+      <Label fx:id="stext" layoutX="5.0" layoutY="12.0" text="SEARCH FOR BOOK" />
+      <TextField fx:id="searchForBook" layoutX="157.0" layoutY="7.0" />
    </children>
 </AnchorPane>

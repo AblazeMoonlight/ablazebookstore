@@ -29,25 +29,23 @@ public class ConsultationLivreCRUD {
      }
      
      
-      public List<Book> listBooks() {
-        List<Book> myList =new ArrayList();
+public ObservableList<Book> listBooks() {
+        ObservableList<Book> myList = FXCollections.observableArrayList();
         try {
-            String requete = "SELECT idBook,title,author,releaseDate,categorie FROM Book";
+            String requete = "SELECT * FROM Book";
             Statement st = cnx
                     .createStatement();
             ResultSet rs = st.executeQuery(requete);
             while (rs.next()) {
                 Book p = new Book();
-                p.setId(rs.getInt(1));
+                p.setId(rs.getInt("bookid"));
                 p.setTitle(rs.getString("title"));
-               p.setAuthor(rs.getString("author"));
-                 p.setReleasedate(rs.getDate("releaseDate"));
+                 p.setAuthor(rs.getString("author"));
+                p.setReleasedate(rs.getDate("releaseDate"));
                  p.setCategory(rs.getString("categorie"));
                  myList.add(p);
              }
-     
-        
-        } catch (SQLException ex) {
+                    } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
           return myList;

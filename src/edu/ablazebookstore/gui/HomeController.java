@@ -62,7 +62,7 @@ public class HomeController implements Initializable {
 
     @FXML
     private void paymentInfo(ActionEvent event) throws IOException {
-        Pane newLoadedPane =FXMLLoader.load(getClass().getResource("Payment.fxml"));
+        Pane newLoadedPane =FXMLLoader.load(getClass().getResource("payment.fxml"));
     panepaymen.getChildren().add(newLoadedPane); 
     hide(pangemb,panesupport,paneconsult,paneclient,panecart,panepaymen);
     
@@ -76,5 +76,15 @@ public class HomeController implements Initializable {
         p5.setVisible(false);
         p6.setVisible(true);
     }
+
+  
+
+    @FXML
+    private void viewBook(ActionEvent event) throws IOException {
+         Pane newLoadedPane =FXMLLoader.load(getClass().getResource("viewconsultation.fxml"));
+    paneconsult.getChildren().add(newLoadedPane); 
+    hide(pangemb,panesupport,panepaymen,paneclient,panecart,paneconsult);
+    }
+    
     
 }
