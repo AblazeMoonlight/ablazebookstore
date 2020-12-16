@@ -9,6 +9,7 @@ import com.google.zxing.EncodeHintType;
 import com.google.zxing.WriterException;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import static edu.ablazebookstore.services.QRCodeAPi.createQR;
+import edu.ablazebookstore.services.UserService;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
@@ -21,7 +22,9 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -55,6 +58,11 @@ public class QRCodeController implements Initializable {
     private Button btPartager;
 public static Random rr=new Random()  ;
             String random=rr.toString();
+    @FXML
+    private TextField thesender;
+  
+    @FXML
+    private PasswordField passwordFd;
     /**
      * Initializes the controller class.
      */
@@ -76,8 +84,8 @@ public static Random rr=new Random()  ;
     private void PartagerBook(ActionEvent event)  {
     
         String host="smtp.gmail.com";  
-  final String user="wael.monsri@esprit.tn";//change accordingly  
-  final String password="203JMT1754";//change accordingly  
+  String user=thesender.getText();//change accordingly  
+   String password=passwordFd.getText();//change accordingly  
     
   String to=emailAdrs.getText();//change accordingly  
   
@@ -141,7 +149,14 @@ props.put("mail.smtp.starttls.enable", "true");
      
      System.out.println("message sent successfully...");  
    
-     } catch (MessagingException e) {e.printStackTrace();}  
+     } catch (MessagingException e) {
+      Alert alert = new Alert(Alert.AlertType.WARNING);
+         alert.setTitle("Error ");
+        alert.setHeaderText("Credentials checkout");
+        alert.setContentText("Verify your credentials");
+        alert.showAndWait();
+     
+     }  
      System.out.println("done");
     
     

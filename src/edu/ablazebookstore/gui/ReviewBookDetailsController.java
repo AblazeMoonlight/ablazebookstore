@@ -11,13 +11,17 @@ import com.google.zxing.NotFoundException;
 import com.google.zxing.WriterException;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import com.google.zxing.qrcode.encoder.QRCode;
-
+import com.mysql.jdbc.log.Log;
 
 import edu.ablazebookstore.models.Book;
+import edu.ablazebookstore.models.Commentaire;
+import edu.ablazebookstore.models.User;
 import edu.ablazebookstore.services.BookCrud;
+import edu.ablazebookstore.services.CommentaireCrud;
 import edu.ablazebookstore.services.HonoryPointsCrud;
 import edu.ablazebookstore.services.QRCodeAPi;
 import static edu.ablazebookstore.services.QRCodeAPi.createQR;
+import edu.ablazebookstore.services.UserService;
 import edu.ablazebookstore.test.MyConnection;
 
 import java.awt.image.RenderedImage;
@@ -77,7 +81,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
-import net.glxn.qrgen.image.ImageType;
+
 
 import org.json.JSONObject;
 
@@ -107,6 +111,8 @@ public class ReviewBookDetailsController implements Initializable {
     private Label bkTitle;
     @FXML
     private Button addCart;
+    @FXML
+    private TextArea cmtSec;
 
     /**
      * Initializes the controller class.
@@ -186,8 +192,37 @@ public class ReviewBookDetailsController implements Initializable {
             
             
              else  {
-              try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("QRCode.fxml"));
+             
+                  Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("using honory points");
+        alert.setHeaderText(null);
+        alert.setContentText("confirm your use for honory point");
+        Optional<ButtonType> answer = alert.showAndWait();
+       
+         if (answer.get().equals(ButtonType.OK)) {
+                 
+                
+                
+                 
+                 
+                 
+                 
+                 try {
+            
+                       HonoryPointsCrud p =new HonoryPointsCrud();
+         int use=UserService.connectedUser.getUserID();
+         int hono= UserService.connectedUser.gethPoints();
+               String a1=UserService.connectedUser.getuFirstName();
+               String a2=UserService.connectedUser.getuLastName();
+               String  a3=UserService.connectedUser.getEmail();
+               Character a4=UserService.connectedUser.getuRole();
+               String a5=UserService.connectedUser.getuPassword();
+               String a6=UserService.connectedUser.getuAddress();
+               String a7=UserService.connectedUser.getTokenResetPassword();
+               p.updateHonory(new User(use,a1,a2,a3,a6,a5,a4,hono,a7));
+                     
+                     
+                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("QRCode.fxml"));
             
             Parent root = fxmlLoader.load();
             
@@ -210,7 +245,7 @@ public class ReviewBookDetailsController implements Initializable {
 
         
     
-    
+    }
     
 
    
@@ -219,6 +254,81 @@ public class ReviewBookDetailsController implements Initializable {
 @FXML
         private void addCart(ActionEvent event) {
     }
+
+    @FXML
+    private void createComment(ActionEvent event) {
+    
+    
+        if(cmtSec.getText().trim().isEmpty()) {
+    
+    Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("no empty comments");
+        alert.setHeaderText("Invalid Operation");
+        alert.setContentText("you need to insert a comment");
+        alert.showAndWait();
+        }
+        else  
+        
+        {
+        
+     
+       CommentaireCrud r= new CommentaireCrud();
+       r.addCommentaire(new Commentaire(UserService.connectedUser.getUserID(),cmtSec.getText()));
+       
+     
+         
+     Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Ajouté");
+        alert.setHeaderText("Information");
+        alert.setContentText("Commentaire ajouté avec succès vous pouvez lui consulter");
+        alert.showAndWait();
+    
+    
+    
+    
+    }
+    
+    
+    
+    
+    
+    }
+
+    private void checkComments(ActionEvent event) throws IOException {
+    
+     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("QRCode.fxml"));
+            
+            Parent root = fxmlLoader.load();
+            
+            QRCodeController rv = fxmlLoader.getController();
+            
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+    
+    
+    }
+
+    @FXML
+    private void consultComments(ActionEvent event) throws IOException {
+   
+    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("commentSection.fxml"));
+            
+            Parent root = fxmlLoader.load();
+            
+            CommentSectionController rv = fxmlLoader.getController();
+            
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+    
+    
+    
+    
+    
+    
+    }
+
     
  
 

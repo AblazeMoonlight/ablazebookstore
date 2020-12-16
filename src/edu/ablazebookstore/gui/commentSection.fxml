@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ablazebookstore.gui.CommentSectionController">
+   <children>
+      <TableView fx:id="viewComments" layoutX="50.0" layoutY="74.0" prefHeight="200.0" prefWidth="501.0">
+        <columns>
+          <TableColumn fx:id="user_id" prefWidth="75.0" text="USER_ID" />
+          <TableColumn fx:id="commentaire" prefWidth="425.0" text="COMMENT" />
+        </columns>
+         <contextMenu>
+            <ContextMenu>
+              <items>
+                <MenuItem fx:id="modif" mnemonicParsing="false" onAction="#mettreJour" text="Modifier" />
+                  <MenuItem fx:id="supp" mnemonicParsing="false" onAction="#supprimerComm" text="Supprimer" />
+              </items>
+            </ContextMenu>
+         </contextMenu>
+      </TableView>
+      <Label layoutX="50.0" layoutY="46.0" text="Liste des Commentaires" />
+   </children>
+</AnchorPane>
