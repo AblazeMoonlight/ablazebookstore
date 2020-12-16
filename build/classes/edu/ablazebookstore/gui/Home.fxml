@@ -104,7 +104,7 @@
                   <Font size="18.0" />
                </font>
             </JFXButton>
-            <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="439.0" onAction="#paymentInfo" prefHeight="70.0" prefWidth="274.0" style="-fx-background-color: #1976D2;" text="Payment Information" textFill="WHITE">
+            <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="509.0" onAction="#paymentInfos" prefHeight="70.0" prefWidth="274.0" style="-fx-background-color: #1976D2;" text="Payment Information" textFill="WHITE">
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="CC_STRIPE" size="22" />
                </graphic>

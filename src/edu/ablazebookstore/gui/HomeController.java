@@ -9,6 +9,8 @@ import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -60,11 +62,8 @@ public class HomeController implements Initializable {
     hide(pangemb,panesupport,paneconsult,paneclient,panepaymen,panecart);
     }
 
-    @FXML
     private void paymentInfo(ActionEvent event) throws IOException {
-        Pane newLoadedPane =FXMLLoader.load(getClass().getResource("payment.fxml"));
-    panepaymen.getChildren().add(newLoadedPane); 
-    hide(pangemb,panesupport,paneconsult,paneclient,panecart,panepaymen);
+        
     
     }
     
@@ -84,6 +83,17 @@ public class HomeController implements Initializable {
          Pane newLoadedPane =FXMLLoader.load(getClass().getResource("viewconsultation.fxml"));
     paneconsult.getChildren().add(newLoadedPane); 
     hide(pangemb,panesupport,panepaymen,paneclient,panecart,paneconsult);
+    }
+
+    @FXML
+    private void paymentInfos(ActionEvent event) {
+        try {
+            Pane newLoadedPane =FXMLLoader.load(getClass().getResource("payment.fxml"));
+            panepaymen.getChildren().add(newLoadedPane);
+            hide(pangemb,panesupport,paneconsult,paneclient,panecart,panepaymen);
+        } catch (IOException ex) {
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     
