@@ -11,7 +11,7 @@ import com.google.zxing.NotFoundException;
 import com.google.zxing.WriterException;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import com.google.zxing.qrcode.encoder.QRCode;
-import com.mysql.jdbc.log.Log;
+
 
 import edu.ablazebookstore.models.Book;
 import edu.ablazebookstore.services.BookCrud;

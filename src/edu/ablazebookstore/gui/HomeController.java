@@ -6,6 +6,8 @@
 package edu.ablazebookstore.gui;
 
 import com.jfoenix.controls.JFXButton;
+import static edu.ablazebookstore.gui.FirstWindow.main;
+import edu.ablazebookstore.services.UserService;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -44,7 +46,11 @@ public class HomeController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        if(UserService.isClient()){
+            manageBooks.setVisible(false);
+            manageBooks.setManaged(false);
+            
+        }
     }    
 
     @FXML
@@ -94,6 +100,13 @@ public class HomeController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+        @FXML
+    private void manageUser(ActionEvent event) throws IOException {
+        Pane newLoadedPane = FXMLLoader.load(getClass().getResource("UpdateUser.fxml"));
+        paneclient.getChildren().clear();
+        paneclient.getChildren().add(newLoadedPane);
+        hide(pangemb,panesupport,paneconsult,panecart,panepaymen,paneclient);
     }
     
     
