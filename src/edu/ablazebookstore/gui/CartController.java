@@ -8,6 +8,8 @@ package edu.ablazebookstore.gui;
 import com.sun.prism.impl.Disposer.Record;
 import edu.ablazebookstore.models.Order;
 import edu.ablazebookstore.services.OrderCrud;
+import edu.ablazebookstore.services.PaymentCrud;
+import edu.ablazebookstore.services.UserService;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.binding.Bindings;
@@ -20,6 +22,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Spinner;
@@ -56,8 +59,6 @@ public class CartController implements Initializable {
 
 //   
     OrderCrud o = new OrderCrud();
-    @FXML
-    private TableColumn<Order, String> txquantity;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -67,13 +68,11 @@ public class CartController implements Initializable {
         //txquantity.setCellValueFactory(new PropertyValueFactory<>("txquantity"));
         txprice.setCellValueFactory(new PropertyValueFactory<>("price"));
 
-
         Callback<TableColumn<Order, String>, TableCell<Order, String>> cellFactory
                 = (TableColumn<Order, String> param) -> new EditingCell();
-        txquantity.setCellFactory(cellFactory);
+//        txquantity.setCellFactory(cellFactory);
 
-        tableOrder.getItems().setAll(o.listeOrder(2));
-        
+        tableOrder.getItems().setAll(o.listeOrder(UserService.connectedUser.getUserID()));
 
         //delete button
         TableColumn col_action = new TableColumn<>("Action");
@@ -99,6 +98,19 @@ public class CartController implements Initializable {
 
         });
 
+    }
+
+    @FXML
+    private void buybutton(ActionEvent event) {
+        PaymentCrud py = new PaymentCrud();
+        py.chargeStripCard();
+//        OrderCrud or=new OrderCrud();
+//        or.modifyOrder(o);
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("INFORMATION");
+        alert.setHeaderText(null);
+        alert.setContentText("TRANSACTION WITH SUCCESS");
+        alert.showAndWait();
     }
 
     //Define the button cell

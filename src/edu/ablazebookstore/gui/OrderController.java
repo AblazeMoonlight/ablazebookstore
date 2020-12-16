@@ -7,6 +7,7 @@ package edu.ablazebookstore.gui;
 
 import edu.ablazebookstore.models.Order;
 import edu.ablazebookstore.services.OrderCrud;
+import edu.ablazebookstore.services.UserService;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -44,7 +45,7 @@ public class OrderController implements Initializable {
         
         OrderCrud o=new OrderCrud();
         
-        tableOrder.getItems().setAll(o.listeOrders());
+        tableOrder.getItems().setAll(o.listeOrder(UserService.connectedUser.getUserID()));
     }    
     
 }

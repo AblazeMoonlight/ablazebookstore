@@ -3,8 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/jhon/Desktop/work/ablazebookstore/src/edu/ablazebookstore/gui/DisplayBook.fxml</file>
             <file>file:/C:/Users/jhon/Desktop/work/ablazebookstore/src/edu/ablazebookstore/services/ConsultationLivreCRUD.java</file>
-            <file>file:/C:/Users/jhon/Desktop/work/ablazebookstore/src/edu/ablazebookstore/gui/Home.fxml</file>
+            <file>file:/C:/Users/jhon/Desktop/work/ablazebookstore/src/edu/ablazebookstore/gui/Orders.fxml</file>
+            <file>file:/C:/Users/jhon/Desktop/work/ablazebookstore/src/edu/ablazebookstore/gui/OrdersController.java</file>
+            <file>file:/C:/Users/jhon/Desktop/work/ablazebookstore/src/edu/ablazebookstore/gui/OrderController.java</file>
+            <file>file:/C:/Users/jhon/Desktop/work/ablazebookstore/src/edu/ablazebookstore/models/Order.java</file>
+            <file>file:/C:/Users/jhon/Desktop/work/ablazebookstore/src/edu/ablazebookstore/gui/CartController.java</file>
+            <file>file:/C:/Users/jhon/Desktop/work/ablazebookstore/src/edu/ablazebookstore/gui/Order.fxml</file>
+            <file>file:/C:/Users/jhon/Desktop/work/ablazebookstore/src/edu/ablazebookstore/gui/Payment.fxml</file>
+            <file>file:/C:/Users/jhon/Desktop/work/ablazebookstore/src/edu/ablazebookstore/gui/contextmenu.css</file>
+            <file>file:/C:/Users/jhon/Desktop/work/ablazebookstore/src/edu/ablazebookstore/gui/FirstWindow.java</file>
+            <file>file:/C:/Users/jhon/Desktop/work/ablazebookstore/src/edu/ablazebookstore/gui/HomeController.java</file>
+            <file>file:/C:/Users/jhon/Desktop/work/ablazebookstore/src/edu/ablazebookstore/gui/Cart.fxml</file>
         </group>
     </open-files>
 </project-private>

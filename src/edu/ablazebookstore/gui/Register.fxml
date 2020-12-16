@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ablazebookstore.gui.RegisterController">
+   <children>
+      <JFXPasswordField fx:id="confirmPass" layoutX="367.0" layoutY="221.0" promptText="Confirm Password" />
+      <JFXPasswordField fx:id="password" layoutX="367.0" layoutY="173.0" promptText="Password" />
+      <JFXTextField fx:id="address" layoutX="367.0" layoutY="111.0" promptText="Adress" />
+      <JFXTextField fx:id="email" layoutX="112.0" layoutY="224.0" promptText="Email" />
+      <JFXTextField fx:id="lastName" layoutX="112.0" layoutY="173.0" promptText="Last Name" />
+      <JFXTextField fx:id="firstName" layoutX="112.0" layoutY="111.0" promptText="First Name" />
+      <Button fx:id="register" layoutX="246.0" layoutY="282.0" mnemonicParsing="false" onAction="#registerUser" prefHeight="25.0" prefWidth="109.0" style="-fx-background-color: BLUE;" text="Register" textFill="#f2e8e8">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <BorderPane layoutX="1.0" prefHeight="77.0" prefWidth="600.0" style="-fx-background-color: bLUE;">
+         <left>
+            <Label prefHeight="43.0" prefWidth="133.0" text="Sign Up" textFill="#fcf3f3" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="System Bold Italic" size="29.0" />
+               </font>
+            </Label>
+         </left>
+      </BorderPane>
+      <Label fx:id="errorEmail" layoutX="123.0" layoutY="260.0" textFill="#da1818" />
+      <Label fx:id="errorUserPassword" layoutX="384.0" layoutY="197.0" textFill="#cd0d0d" />
+      <Label fx:id="errorFirstName" layoutX="129.0" layoutY="143.0" textFill="#cd2020" />
+      <Label fx:id="errorLastName" layoutX="122.0" layoutY="205.0" prefHeight="17.0" prefWidth="0.0" textFill="#d01d1d" />
+      <Label fx:id="errorPass" layoutX="385.0" layoutY="252.0" prefHeight="17.0" prefWidth="0.0" textFill="#c30e0e" />
+      <Label fx:id="ErrorAddress" layoutX="371.0" layoutY="143.0" textFill="#dd0b0b" />
+      <Label fx:id="auth" layoutX="327.0" layoutY="324.0" />
+   </children>
+</AnchorPane>
