@@ -31,7 +31,7 @@ public class FirstWindow extends Application {
             
             Scene scene = new Scene(root, 750, 500);
             
-            primaryStage.setTitle("Hello World!");
+            primaryStage.setTitle("Ablaze Moonlight Book Store!");
             primaryStage.setScene(scene);
            /* primaryStage.setMinHeight(780);
             primaryStage.setMinWidth(1350);
