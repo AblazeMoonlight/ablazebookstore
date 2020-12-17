@@ -9,7 +9,11 @@
     
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ablazebookstore.gui.ViewconsultationController">
    <children>
+<<<<<<< Updated upstream
       <TableView fx:id="allBooksTable" layoutY="60.0" prefHeight="309.0" prefWidth="648.0">
+=======
+      <TableView fx:id="allBooksTable" editable="true" layoutY="64.0" prefHeight="336.0" prefWidth="600.0" stylesheets="@contextmenu.css">
+>>>>>>> Stashed changes
         <columns>
           <TableColumn fx:id="idBk" prefWidth="92.0" text="BOOK ID" />
           <TableColumn fx:id="title" prefWidth="121.0" text="TITLE" />
@@ -18,5 +22,10 @@
             <TableColumn fx:id="category" prefWidth="150.0" text="CATEGORY" />
         </columns>
       </TableView>
+<<<<<<< Updated upstream
+=======
+      <Label fx:id="stext" layoutX="5.0" layoutY="12.0" text="SEARCH FOR BOOK" />
+      <TextField fx:id="searchForBook" layoutX="131.0" layoutY="7.0" />
+>>>>>>> Stashed changes
    </children>
 </AnchorPane>
