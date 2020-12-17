@@ -29,9 +29,9 @@
                   </Label>
                </children>
             </Pane>
-            <JFXButton alignment="BASELINE_LEFT" prefHeight="70.0" prefWidth="285.0" style="-fx-background-color: #1976D2;" text="View Books" textFill="WHITE">
+            <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="10.0" onAction="#viewCart" prefHeight="70.0" prefWidth="274.0" style="-fx-background-color: #1976D2;" text="View Cart" textFill="WHITE">
                <graphic>
-                  <FontAwesomeIconView fill="WHITE" glyphName="BOOK" size="22" wrappingWidth="20.142857551574707" />
+                  <FontAwesomeIconView fill="WHITE" glyphName="SHOPPING_CART" size="22" />
                </graphic>
                <padding>
                   <Insets left="50.0" />
@@ -44,9 +44,9 @@
                   <Font size="18.0" />
                </font>
             </JFXButton>
-            <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="10.0" onAction="#viewCart" prefHeight="70.0" prefWidth="274.0" style="-fx-background-color: #1976D2;" text="View Cart" textFill="WHITE">
+            <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="159.0" onAction="#viewBook" prefHeight="70.0" prefWidth="285.0" style="-fx-background-color: #1976D2;" text="View Books" textFill="WHITE">
                <graphic>
-                  <FontAwesomeIconView fill="WHITE" glyphName="SHOPPING_CART" size="22" />
+                  <FontAwesomeIconView fill="WHITE" glyphName="BOOK" size="22" wrappingWidth="20.142857551574707" />
                </graphic>
                <padding>
                   <Insets left="50.0" />
@@ -104,7 +104,7 @@
                   <Font size="18.0" />
                </font>
             </JFXButton>
-            <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="439.0" onAction="#paymentInfo" prefHeight="70.0" prefWidth="274.0" style="-fx-background-color: #1976D2;" text="Payment Information" textFill="WHITE">
+            <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="509.0" onAction="#paymentInfos" prefHeight="70.0" prefWidth="274.0" style="-fx-background-color: #1976D2;" text="Payment Information" textFill="WHITE">
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="CC_STRIPE" size="22" />
                </graphic>
